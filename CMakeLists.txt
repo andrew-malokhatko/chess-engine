@@ -44,6 +44,9 @@ target_compile_definitions(engine PUBLIC IMAGES_PATH=./Resources/Images/)
 target_compile_definitions(engine PUBLIC GAMES_PATH=./Resources/Games/)
 target_compile_definitions(engine PUBLIC SOUNDS_PATH=./Resources/Sounds/)
 
+target_compile_definitions(engine PUBLIC LICHESS_BOOK_PATH="./Books/LichessBook.txt")
+target_compile_definitions(engine PUBLIC MASTER_BOOK_PATH="./Books/MasterBook.txt")
+
 # Copy resources folder to build directory
 add_custom_target(CopyResources ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -51,4 +54,11 @@ add_custom_target(CopyResources ALL
     ${CMAKE_BINARY_DIR}/Resources  # Destination directory
 )
 
-add_dependencies(engine CopyResources)
+# Copy resources folder to build directory
+add_custom_target(CopyBooks ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/Chess/AI/Books/     # Source directory
+    ${CMAKE_BINARY_DIR}/Books               # Destination directory
+)
+
+add_dependencies(engine CopyResources CopyBooks)

@@ -9,12 +9,19 @@
 #include "Book.h"
 #include "Search.h"
 
+#if !defined(LICHESS_BOOK_PATH) || !defined(MASTER_BOOK_PATH)
+
+#define MASTER_BOOK_PATH "./Books/MasterBook.txt"
+#define LICHESS_BOOK_PATH "./Books/LichessBook.txt"
+
+#endif
+
 namespace Chess
 {
 	class AI
 	{
-		static constexpr const char* masterBookName = "./Books/MasterBook.txt";
-		static constexpr const char* lichessBookName = "./Books/LichessBook.txt";
+		static constexpr const char* masterBookName = MASTER_BOOK_PATH;
+		static constexpr const char* lichessBookName = LICHESS_BOOK_PATH;
 		static constexpr int maxPlyCount = 10;
 
 		const Book masterBook = Book::loadFromBook(masterBookName, maxPlyCount);
