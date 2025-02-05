@@ -1,0 +1,14 @@
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+[Oo]ut/
+[Bb]ild/
+.vs/
+.vscode/
+
+LichessGames.txt
+MasterGames.txt
